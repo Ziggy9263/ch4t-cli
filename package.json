@@ -1,0 +1,30 @@
+{
+  "name": "ch4t-cli",
+  "version": "0.1.0",
+  "description": "Refined Console Client for ch4t.ga by JRM",
+  "main": "ch4tcli.js",
+  "scripts": {
+    "test": "echo \"Lol no testing 4 u\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziggy9263/ch4t-cli.git"
+  },
+  "keywords": [
+    "Console",
+    "Chat",
+    "Client",
+    "ch4t"
+  ],
+  "author": "Ziggy9263",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Ziggy9263/ch4t-cli/issues"
+  },
+  "homepage": "https://github.com/Ziggy9263/ch4t-cli#readme",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "colors": "^1.1.2",
+    "socket.io-client": "^1.7.3"
+  }
+}
