@@ -18,6 +18,7 @@ var main = blessed.box({
     border: {
 	type: 'line'
     },
+    tags: true,
     scrollable: true,
     style: {
 	fg: 'white',
@@ -51,7 +52,7 @@ var input = blessed.textarea({
 screen.append(main);
 screen.append(input);
 screen.render();
-sendmsg('Connecting...');
+sendmsg('{blue-fg}Connecting...{/}');
 input.focus();
 screen.render();
 
@@ -64,13 +65,13 @@ input.key(['enter'], function(ch, key) {
         username: config.username,
         message: input.getValue(),
 	customcolor: config.customcolor,
-	timestamp: 'Half Past Ass'
+	timestamp: '0'
 	};
     var col = '';
     if(data.customcolor === '99') col = colors[rand(0,colors.length)].code;
     else col = colors[config.customcolor].code;
     socket.emit('new message', data);
-    sendmsg(col + data.timestamp + ": " + data.message + "{/}");
+    sendmsg(col + data.timestamp + ": " + data.username + ": " + data.message + "{/}");
     this.clearValue();
     screen.render();
 });
