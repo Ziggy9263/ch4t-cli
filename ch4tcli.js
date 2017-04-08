@@ -2,15 +2,14 @@ var socket = require('socket.io-client')('http://ch4t.ga'),
     util = require('util'),
     colors = require('./colors.js'),
     blessed = require('blessed'),
+    contrib = require('blessed-contrib'),
     config = require('./config.js');
-
-var log = '';
 
 var screen = blessed.screen({
     dockBorders: true
 });
 
-var main = blessed.box({
+var main = contrib.log({
     top: 'top',
     left: 'center',
     width: '100%',
@@ -25,7 +24,8 @@ var main = blessed.box({
 	border: {
 	    fg: '#f0f0f0'
 	}
-    }
+    },
+    bufferLength: '100%-2'
 });
 
 var input = blessed.textarea({
@@ -49,12 +49,39 @@ var input = blessed.textarea({
     }
 });
 
+/*var wireframe_i = 0;
+
+var wireframe = blessed.image({
+    file: './wireframe/frame_0_delay-1s.png',
+    scale: '0.25',
+//    width: '50',
+    ascii: true,
+//    animate: true,
+    border: {
+        type: 'line'
+    },
+    top: 'center',
+    left: 'center',
+//    onReady: ready,
+    style: {
+	fg: 'white'
+    }});*/
+
 screen.append(main);
 screen.append(input);
+//screen.append(wireframe);
 screen.render();
 sendmsg('{blue-fg}Connecting...{/}');
 input.focus();
 screen.render();
+
+/*setInterval(function() {
+    wireframe_i += 1;
+    wireframe.setImage('./wireframe/frame_' + wireframe_i + '_delay-1s.png');
+    if(wireframe_i === 7) wireframe_i = 0;
+    sendmsg(wireframe_i + ' is activated.');
+    screen.render();
+}, 1000)*/
 
 input.key(['escape', 'C-q', 'C-c'], function(ch, key) {
     return process.exit(0);
@@ -77,8 +104,7 @@ input.key(['enter'], function(ch, key) {
 });
 
 function sendmsg (string) {
-    log += string + '\n';
-    main.setContent(log);
+    main.log(string);
 };
 
 socket.on('connect', function(){
