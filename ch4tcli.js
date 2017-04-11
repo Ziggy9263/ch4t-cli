@@ -49,7 +49,10 @@ var input = blessed.textarea({
 	}
     }
 });
-
+/*
+so.... what do we need to do here to make this better?
+i.e. get u $10. 
+*/
 /*var wireframe_i = 0;
 
 var wireframe = blessed.image({
@@ -83,6 +86,8 @@ screen.render();
     sendmsg(wireframe_i + ' is activated.');
     screen.render();
 }, 1000)*/
+
+
 
 input.key(['escape', 'C-q', 'C-c'], function(ch, key) {
     return process.exit(0);
