@@ -3,6 +3,7 @@ var socket = require('socket.io-client')('http://ch4t.ga'),
     colors = require('./colors.js'),
     blessed = require('blessed'),
     contrib = require('blessed-contrib'),
+    notify = require('node-notifier'),
     config = require('./config.js');
 
 var screen = blessed.screen({
@@ -71,7 +72,7 @@ screen.append(main);
 screen.append(input);
 //screen.append(wireframe);
 screen.render();
-sendmsg('{blue-fg}Connecting...{/}');
+rendermsg('{blue-fg}Connecting...{/}');
 input.focus();
 screen.render();
 
@@ -98,29 +99,29 @@ input.key(['enter'], function(ch, key) {
     if(data.customcolor === '99') col = colors[rand(0,colors.length)].code;
     else col = colors[config.customcolor].code;
     socket.emit('new message', data);
-    sendmsg(col + data.timestamp + ": " + data.username + ": " + data.message + "{/}");
+    rendermsg(col + data.timestamp + ": " + data.username + ": " + data.message + "{/}");
     this.clearValue();
     screen.render();
 });
 
-function sendmsg (string) {
+function rendermsg(string) {
     main.log(string);
 };
 
 socket.on('connect', function(){
 	socket.emit('add user', config.username);
-	sendmsg('Connected as ' + config.username);
+	rendermsg('Connected as ' + config.username);
 	screen.render();
 });
 
 socket.on('disconnect', function() {
-	sendmsg('{red-fg}Disconnected... REEEEE{/}');
+	rendermsg('{red-fg}Disconnected... REEEEE{/}');
 	screen.render();
 });
 
 socket.on('login', function(data) {
-	sendmsg('{cyan-fg}Logged in, Users online: ' + data.numUsers + '{/}');
-	sendmsg('{cyan-fg}'+data.userlist+'{/}');
+	rendermsg('{cyan-fg}Logged in, Users online: ' + data.numUsers + '{/}');
+	rendermsg('{cyan-fg}'+data.userlist+'{/}');
 	screen.render();
 });
 
@@ -128,7 +129,8 @@ socket.on('new message', function (data) {
     var col = '';
     if(data.customcolor === '99') col = colors[rand(0,colors.length)].code;
     else col = colors[config.customcolor].code;
+notify.notify(data.message);
     socket.emit('new message', data);
-    sendmsg(col + data.timestamp + ": "+ data.username + ": " + data.message + "{/}");
+    rendermsg(col + data.timestamp + ": "+ data.username + ": " + data.message + "{/}");
     screen.render();
 });
