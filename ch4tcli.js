@@ -5,7 +5,7 @@ var socket = require('socket.io-client')('http://ch4t.ga'),
     contrib = require('blessed-contrib'),
     notify = require('node-notifier'),
     config = require('./config.js');
-
+//poop
 var screen = blessed.screen({
     dockBorders: true
 });
