@@ -1,6 +1,6 @@
 {
   "name": "ch4t-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Refined Console Client for ch4t.ga by JRM",
   "main": "ch4tcli.js",
   "scripts": {
