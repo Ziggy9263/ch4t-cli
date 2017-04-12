@@ -4,6 +4,8 @@ Refined Console Based Chat Client for the ch4t.ga site by JRM
 ##### Changelog
 ```
 Version     Updates
+0.2.1       Addressed issue where incoming messages crashed the app.
+
 0.2.0       Added Login screen with animated image and text box
             Changed the way logging in works to wait for the user input.
 

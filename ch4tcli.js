@@ -175,9 +175,8 @@ socket.on('login', function(data) {
 
 socket.on('new message', function (data) {
     var col = '';
-    if(data.customcolor === '99') col = colors[rand(0,colors.length)].code;
-    else col = colors[config.customcolor].code;
-notify.notify(data.message);
-    socket.emit('new message', data);
+    if(data.customcolor === 99) col = colors[Math.floor(Math.random() * (colors.length + 1))].code;
+    else col = colors[customcolor].code;
+    notify.notify(data.message);
     rendermsg(col + data.timestamp + ": "+ data.username + ": " + data.message + "{/}");
 });
