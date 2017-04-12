@@ -4,8 +4,9 @@ Refined Console Based Chat Client for the ch4t.ga site by JRM
 ##### Changelog
 ```
 Version     Updates
+-------     -------
 0.2.2       Changed notifier object to be cooler
-            Added backgrouns to the app so white terminals don't feel discriminated against.
+            Added backgrounds to the app so white terminals don't feel discriminated against.
 
 0.2.1       Addressed issue where incoming messages crashed the app.
 
