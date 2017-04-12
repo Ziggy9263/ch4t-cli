@@ -1,6 +1,6 @@
 {
   "name": "ch4t-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Refined Console Client for ch4t.ga by JRM",
   "main": "ch4tcli.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.7.5",
     "colors": "^1.1.2",
+    "node-notifier": "^5.1.2",
     "socket.io-client": "^1.7.3"
   }
 }
