@@ -24,8 +24,10 @@ var main = contrib.log({
     scrollable: true,
     style: {
 	fg: 'white',
+        bg: '#000000',
 	border: {
-	    fg: '#f0f0f0'
+	    fg: '#f0f0f0',
+            bg: '#000000'
 	}
     },
     bufferLength: '100%-2'
@@ -46,8 +48,10 @@ var input = blessed.textarea({
     },
     style: {
 	fg: 'white',
+        bg: '#000000',
 	border: {
-	    fg: '#f0f0f0'
+	    fg: '#f0f0f0',
+            bg: '#000000'
 	}
     }
 });
@@ -65,7 +69,12 @@ var wireframe = blessed.image({
     left: 'center',
     onReady: wireframeReady = 1,
     style: {
-	fg: 'white'
+	fg: 'white',
+        bg: '#000000',
+        border: {
+            fg: '#f0f0f0',
+            bg: '#000000'
+        }
     }});
 
 var nameBox = blessed.textarea({
@@ -85,8 +94,10 @@ var nameBox = blessed.textarea({
     label: 'Enter your Name',
     style: {
 	fg: 'white',
+        bg: '#000000',
 	border: {
-	    fg: '#f0f0f0'
+	    fg: '#f0f0f0',
+            bg: '#000000'
 	}
     }
 });
@@ -126,7 +137,7 @@ input.key(['enter'], function(ch, key) {
 	timestamp: '0'
 	};
     var col = '';
-    if(data.customcolor === 99) col = colors[Math.floor(Math.random() * (colors.length + 1))].code;
+    if(data.customcolor === 99) col = colors[Math.floor(Math.random() * colors.length)].code;
     else col = colors[data.customcolor].code;
     socket.emit('new message', data);
     rendermsg(col + data.timestamp + ": " + data.username + ": " + data.message + "{/}");
@@ -175,8 +186,8 @@ socket.on('login', function(data) {
 
 socket.on('new message', function (data) {
     var col = '';
-    if(data.customcolor === 99) col = colors[Math.floor(Math.random() * (colors.length + 1))].code;
+    if(data.customcolor === 99) col = colors[Math.floor(Math.random() * colors.length)].code;
     else col = colors[customcolor].code;
-    notify.notify(data.message);
+    notify.notify({'title': 'ch4t-cli', 'message': data.username + ": " + data.message});
     rendermsg(col + data.timestamp + ": "+ data.username + ": " + data.message + "{/}");
 });
